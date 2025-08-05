@@ -1,11 +1,6 @@
 #%%
 import random
 
-const = 0
-
-plays = ["Papel", "Pedra", "Tesoura"]
-player_scoreboard = 0
-computer_scoreboard = 0
 
 
 def possible_plays(number):
@@ -43,14 +38,22 @@ def who_wins_the_game(int_chosen_move, computer_number):
         print("Você perdeu !")
         return computer_scoreboard + 1
 
+const = 0
 
-while const <= 0:
-    print("===============================================")
-    print("Bem vindo ao jogo de Papel, pedra ou tesouro")
-    print("===============================================")
-    print()
-    print()
+plays = ["Papel", "Pedra", "Tesoura"]
+player_scoreboard = 0
+computer_scoreboard = 0
+
+print("===============================================")
+print("Bem vindo ao jogo de Papel, pedra ou tesouro")
+print("===============================================")
+print()
+print()
     
+while const <= 0:
+    
+    player_scoreboard = 0
+    computer_scoreboard = 0
     
     print("Escolha seu lance:")
     print("0 - Papel | 1 - Pedra | 2 - Tesoura")
@@ -71,27 +74,33 @@ while const <= 0:
         who_wins_the_game(int_chosen_move, computer_number)
     except Exception as e:
         print("O erro foi: {}".format(e))
-    
 
-    print("=======================")
-    print()
-    print("Jogar novamente ? 0 - SIM | 1 - NÃO")
-    play_again = input()
     
-    #TALVEZ EU NAO PRECISE DO WHILE LA EM CIMA, POSSO COMEÇAR AQUI EMBAIXO
     
-    try:
-        int_play_again = int(play_again)
-        if int_play_again == 0:
-            const = 0
-        elif int_play_again == 1:
-            const =+1
-        else:
-            print("Insira um valor válido")
-            const = 0
-            
-    except Exception as e:
-        print("O erro foi: {}".format(e))
+    
+    
+    const_play_again = 0
+    while const_play_again == 0:
+        print("=======================")
+        print()
+        print("Jogar novamente ? 0 - SIM | 1 - NÃO")
+        play_again = input()
+    
+        try:
+            int_play_again = int(play_again)
+            if int_play_again == 0:
+                print("Pontuação do comuputador é".format(computer_scoreboard))
+                print("Sua pontuação é ".format(player_scoreboard))
+                print(player_scoreboard)
+                const_play_again = 1
+            elif int_play_again == 1:
+                const =+1
+                const_play_again = 1
+            else:
+                print("Insira um valor válido")
+                            
+        except Exception as e:
+            print("O erro foi: {}".format(e))
 
 #%%
 
