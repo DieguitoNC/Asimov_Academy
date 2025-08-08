@@ -6,7 +6,6 @@ Determinar como que é feito para vencer
 
 class Tic_Tac_Toe:
     
-    continue_const = 0
     
     def __init__(self):
         self.game = [1,2,3,4,5,6,7,8,9]
@@ -36,11 +35,19 @@ class Tic_Tac_Toe:
         
     
     def run_game(self):
-        while continue_const = 0:
+        continue_const = 0
+        while continue_const == 0:
             print("================================")
             print("Bem-vindo ao jogo da velha")
             print("================================")
             print()
-            
-            
-        
+            print("Faça sua jogada !")
+            print("[1,2,3]")
+            print("[4,5,6]")
+            print("[7,8,9]")
+            player_choice = input()
+            self.user.append(player_choice)
+            continue_const=+1
+
+
+Tic_Tac_Toe.run_game()
