@@ -11,3 +11,65 @@ df_data.index.name = 'index_name'
 # %%
 df_data.to_sql('data', conn, index_label='index_name')
 # %%
+
+c = conn.cursor()
+c.execute('CREATE TABLE products (product_id, product_name, price)')
+# %%
+c.execute('DROP TABLE products')
+c.execute('DROP TABLE data')
+
+# %%
+c.execute('CREATE TABLE products ([product_id] INTEGER PRIMARY KEY, [product_name] TEXT, [price] INTEGER)')
+
+# %%
+
+c.execute('''INSERT INTO PRODUCTS (product_id, product_name, price)
+          VALUES
+          (1, 'Computer', '800'),
+          (2, 'Printer', '200'),
+          (3, 'Tablet', '300')
+          
+          
+''')
+
+# %%
+conn.commit()
+# %%
+df_data2 = df_data.iloc[::-2]
+df_data2.to_sql('data', conn, if_exists='append')
+# %%
+c.execute("SELECT * FROM data")
+c.fetchone()
+# %%
+c.fetchall()
+# %%
+df = pd.DataFrame(c.fetchall())
+# %%
+df
+# %%
+c.execute("SELECT * FROM data WHERE A > 200")
+# %%
+df = pd.DataFrame(c.fetchall())
+
+# %%
+df  
+# %%
+c.execute("SELECT * FROM data WHERE A > 200 AND B > 100")
+df = pd.DataFrame(c.fetchall())
+# %%
+df
+# %%
+query = "SELECT * FROM data"
+# %%
+df = pd.read_sql(query, con=conn, index_col='index_name')
+# %%
+df
+# %%
+c.execute("UPDATE data SET A=218 WHERE index_name='b'")
+# %%
+conn.commit()
+# %%
+c.execute("DELETE FROM data WHERE index_name=1")
+# %%
+conn.commit()
+# %%
